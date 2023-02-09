@@ -1,59 +1,167 @@
-<div th:replace="shared/top"></div>
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-	                        <form action = "/administrativo/funcionarios/salvar" method = "POST">
-							  <div class="form-row">
-							    <div class="form-group col-md-6">
-							      <label for="inputEmail4">Email</label>
-							      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-							    </div>
-							    <div class="form-group col-md-6">
-							      <label for="inputPassword4">Password</label>
-							      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-							    </div>
-							  </div>
-							  <div class="form-group">
-							    <label for="inputAddress">Address</label>
-							    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-							  </div>
-							  <div class="form-group">
-							    <label for="inputAddress2">Address 2</label>
-							    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-							  </div>
-							  <div class="form-row">
-							    <div class="form-group col-md-6">
-							      <label for="inputCity">City</label>
-							      <input type="text" class="form-control" id="inputCity">
-							    </div>
-							    <div class="form-group col-md-4">
-							      <label for="inputState">State</label>
-							      <select id="inputState" class="form-control">
-							        <option selected>Choose...</option>
-							        <option>...</option>
-							      </select>
-							    </div>
-							    <div class="form-group col-md-2">
-							      <label for="inputZip">Zip</label>
-							      <input type="text" class="form-control" id="inputZip">
-							    </div>
-							  </div>
-							  <div class="form-group">
-							    <div class="form-check">
-							      <input class="form-check-input" type="checkbox" id="gridCheck">
-							      <label class="form-check-label" for="gridCheck">
-							        Check me out
-							      </label>
-							    </div>
-							  </div>
-							  <button type="submit" class="btn btn-primary">Sign in</button>
-							</form action = "/administrativo/funcionarios/salvar" method = "POST">
-                        </div>
-                          
-                    </div>
-                </main>
-              <div th:replace="shared/bottom"></div>	
+	<div th:replace="shared/top"></div>
+	    <section class="layout-content">
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <i class="oi oi-caret-right"></i>
+	                        <span>Lista de Funcionários</span>
+	                    </li>
+	                </ul>
+	                <a class="btn btn-primary btn-md" href="/funcionarios/cadastrar" role="button">
+	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+	                    <span>Cadastrar Funcionários</span>
+	                </a>
+	            </div>
+	        </nav>
+	        
+	        <div class="container" id="cadastro">
+	            <form action="/administrativo/funcionarios/salvar" th:object = "${employee}" method="POST">
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="nome">Nome do Funcionário</label>
+	                        <input type="text" class="form-control" id="name" placeholder="Nome Completo"
+	                               autofocus="autofocus" th:field="*{name}" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label for="salario">Salário Bruto</label>
+	                        <input type="text" class="form-control" id="salary" data-mask="#.##0,00"
+	                               data-mask-reverse="true" th:field="*{salary}" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <!--<div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="dataEntrada">Data de Entrada</label>
+	                        <input type="date" class="form-control" id="entryDate" name="entryDate" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label for="dataSaida">Data de Saída</label>
+	                        <input type="date" class="form-control" id="departureDate" name="departureDate" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>-->
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="jobFunction">Cargo</label>
+	                        <select id="jobFunction" class="form-control" name="jobFunction">
+	                            <option value="">Selecione...</option>
+	                            <option value="1">Auxiliar Contábil</option>
+	                            <option value="2">Auxiliar Administrativo</option>
+	                            <option value="3">Contador</option>
+	                            <option value="4">Adminitrador</option>
+	                            <option value="5">Programado PHP</option>
+	                            <option value="6">Desenvolvedor Java Jr.</option>
+	                            <option value="7">Desenvolvedor Java Pleno</option>
+	                            <option value="8">Desenvolvedor Java Senior</option>
+	                            <option value="9">Auxiliar de RH</option>
+	                            <option value="10">Coordenador de RH</option>
+	                            <option value="11">Psicologo</option>
+	                        </select>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="city">Cidade</label>
+	                        <input type="text" class="form-control" id="city" name="city" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label for="publicArea">Logradouro</label>
+	                        <input type="text" class="form-control" id="publicArea" placeholder="logradouro sem número"
+	                               name="publicArea" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="number;">Número</label>
+	                        <input type="text" class="form-control" id="number;" name="number" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label for="complement">Complemento</label>
+	                        <input type="text" class="form-control" id="complement" placeholder="fundos, casa, AP. 102, .."
+	                               name="complement" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="neighborhood">Bairro</label>
+	                        <input type="text" class="form-control" id="neighborhood" name="neighborhood" value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="state">UF</label>
+	                        <select id="state" class="form-control" name="state">
+	                            <option value="">Selecione...</option>
+	                            <option value="AC">AC</option>
+	                            <option value="AL">AL</option>
+	                            <option value="AM">AM</option>
+	                            <option value="BA">BA</option>
+	                            <option value="CE">CE</option>
+	                            <option value="DF">DF</option>
+	                            <option value="ES">ES</option>
+	                            <option value="GO">GO</option>
+	                            <option value="MA">MA</option>
+	                            <option value="MT">MT</option>
+	                            <option value="MS">MS</option>
+	                            <option value="MG">MG</option>
+	                            <option value="PA">PA</option>
+	                            <option value="PB">PB</option>
+	                            <option value="PR">PR</option>
+	                            <option value="PE">PE</option>
+	                            <option value="PI">PI</option>
+	                            <option value="RJ">RJ</option>
+	                            <option value="RN">RN</option>
+	                            <option value="RS">RS</option>
+	                            <option value="RO">RO</option>
+	                            <option value="RR">RR</option>
+	                            <option value="SC">SC</option>
+	                            <option value="SP">SP</option>
+	                            <option value="SE">SE</option>
+	                            <option value="TO">TO</option>
+	                        </select>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-2">
+	                        <label for="zipCode">Cep</label>
+	                        <input type="text" class="form-control" id="zipCode" data-mask="00000-000" name="zipCode"
+	                               value=""/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <input type="hidden" id="id" th:field="*{id}" value=""/>
+	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+	            </form>
+	        </div>
+	        </section>
+	<div th:replace="shared/bottom"></div>
