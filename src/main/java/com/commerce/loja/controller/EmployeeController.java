@@ -52,5 +52,12 @@ public class EmployeeController {
 		return register(employee.get());
 	}
 	
+	@GetMapping("/administrativo/funcionarios/remover/{id}")
+	public String deleteEmployee(@PathVariable("id") Long id) {
+		Optional<Employee> employee = employeeRepository.findById(id);
+		employeeRepository.delete(employee.get());
+		return "redirect:/administrativo/funcionarios/listar";
+	}
+	
 
 }

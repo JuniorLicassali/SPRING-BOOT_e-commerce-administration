@@ -8,7 +8,7 @@
 	                        <span>Lista de Funcionários</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/funcionarios/cadastrar" role="button">
+	                <a class="btn btn-primary btn-md" href="/administrativo/funcionarios/cadastrar" role="button">
 	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
 	                    <span>Cadastrar Funcionários</span>
 	                </a>
@@ -94,11 +94,11 @@
 	                <table class="table table-striped table-hover table-sm">
 	                    <thead>
 	                    <tr>
-	                        <th>#</th>
+	                        <th>ID</th>
 	                        <th>Nome</th>
 	                        <th>Cargo</th>
 	                        <th>Salário</th>
-	                        <th>Ação</th>
+	                        <th></th>
 	                    </tr>
 	                    </thead>
 	                    <tbody>
@@ -109,13 +109,9 @@
 	                        <td th:text = "${employee.salary}"></td>
 	                        
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/editar/{id}(id=${employee.id})}" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
+	                            <a class="btn btn-warning" th:href="@{/administrativo/funcionarios/editar/{id}(id=${employee.id})}">Editar</a>
+	                            
+	                            <a href="#" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administrativo/funcionarios/remover/{id}(id=${employee.id})} + '\' } '" class="btn btn-danger">Excluir</a>
 	                        </td>
 	                    </tr>
 	                    
