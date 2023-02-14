@@ -1,0 +1,46 @@
+	<div th:replace="shared/top"></div>
+	    <section class="layout-content">
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <a class="btn btn-primary btn-md" href="/administrativo/produtos/cadastrar" role="button">
+	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+	                    <span>Cadastrar Produtos</span>
+	                </a>
+	            </div>
+	        </nav>
+	
+	        <div class="container">
+	            <div class="table-responsive">
+	                <table class="table table-striped table-hover table-sm">
+	                    <thead>
+	                    <tr>
+	                        <th>#</th>
+	                        <th>Descrição</th>
+	                        <th>Quantidade em Estoque</th>
+	                        <th>Valor de venda</th>
+	                        <th>Imagem</th>
+	                        <th></th>
+	                    </tr>
+	                    </thead>
+	                    <tbody>
+	                    <tr th:each="product : ${listOfProducts}">
+	                        <td th:text = "${product.id}"></td>
+	                        <td th:text = "${product.description}"></td >
+	                        <td th:text = "${product.inventoryQuantity}"></td>
+	                        <td th:text = "${product.saleValue}"></td>
+	                        <td><img th:src="@{/administrativo/produtos/mostrar-imagem/{image}(image=${product.nameImage})}" width="100"/></td>
+	                        
+	                        <td colspan="2">
+	                            <a class="btn btn-warning" th:href="@{/administrativo/produtos/editar/{id}(id=${product.id})}">Editar</a>
+	                            
+	                            <a href="#" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administrativo/produtos/remover/{id}(id=${product.id})} + '\' } '" class="btn btn-danger">Excluir</a>
+	                        </td>
+	                    </tr>
+	                    
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </section>
+	<div th:replace="shared/bottom"></div>
+	

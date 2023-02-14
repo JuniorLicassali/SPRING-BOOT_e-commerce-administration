@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.commerce.loja.model.Employee;
+import com.commerce.loja.repository.CityRepository;
 import com.commerce.loja.repository.EmployeeRepository;
 
 @Controller
@@ -19,11 +20,15 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private CityRepository cityRepository;
 
 	@GetMapping("/administrativo/funcionarios/cadastrar")
 	public ModelAndView register(Employee employee) {
 		ModelAndView mv = new ModelAndView("administrative/employee/cadastro");
 		mv.addObject("employee", employee);
+		mv.addObject("listOfCities", cityRepository.findAll());
 		return mv;
 	}
 	

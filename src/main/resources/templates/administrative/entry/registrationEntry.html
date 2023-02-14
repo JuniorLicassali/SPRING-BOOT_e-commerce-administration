@@ -1,0 +1,133 @@
+<div th:replace="shared/top"></div>
+<section class="layout-content">
+	<nav class="navbar navbar-expand-md bg-light">
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<i class="oi oi-caret-right"></i>
+
+				</li>
+			</ul>
+			<a class="btn btn-primary btn-md" href="/administrativo/entrada/cadastrar" role="button">
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+				<span>Entrada de Produtos</span>
+			</a>
+		</div>
+	</nav>
+
+	<div class="container" id="cadastro">
+		<form action="/administrativo/entrada/salvar" th:object="${entry}" method="POST">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Funcionário</label>
+					<select th:field="*{employee}" class="form-control">
+						<option th:each="employ : ${listOfEmployees}" th:value="${employ.id}" th:text="${employ.name}">
+						</option>
+					</select>
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="observation">Observação</label>
+					<input type="text" class="form-control" id="observation" placeholder="Observação"
+						autofocus="autofocus" th:field="*{observation}" value="" />
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="supplier">Fornecedor</label>
+					<input type="text" class="form-control" id="supplier" placeholder="Fornecedor" autofocus="autofocus"
+						th:field="*{supplier}" value="" />
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+			</div>
+			<hr class="dropdown-divider" />
+
+			<div class="form-row" th:object="${itemEntry}">
+				<div class="form-group col-md-4">
+					<label>Produto</label>
+					<select th:field="*{product}" class="form-control">
+						<option th:each="products : ${listOfProducts}" th:value="${products.id}"
+							th:text="${products.description}"></option>
+					</select>
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="amount">Quantidade</label>
+					<input type="number" class="form-control" id="amount" placeholder="Quantidade" autofocus="autofocus"
+						th:field="*{amount}" value="" />
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="productValue">Valor Custo</label>
+					<input type="number" class="form-control" id="productValue" placeholder="Valor Custo"
+						autofocus="autofocus" th:field="*{productValue}" value="" />
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+				
+				<div class="form-group col-md-2">
+					<label for="saleValue">Valor Venda</label>
+					<input type="number" class="form-control" id="saleValue" placeholder="Valor Venda"
+						autofocus="autofocus" th:field="*{saleValue}" value="" />
+					<div class="invalid-feedback">
+
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<button type="submit" name="action" th:value="itens"
+						class="btn btn-primary btn-sm mt-4">Adicionar</button>
+				</div>
+
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-12 mt-5">
+					<div class="table-responsive">
+						<table class="table table-striped table-hover table-sm">
+							<thead>
+								<tr>
+									<th>Descrição</th>
+									<th>Quantidade</th>
+									<th>Valor custo</th>
+									<th>Valor venda</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="itens : ${listOfItems}">
+									<td th:text="${itens.product.description}"></td>
+									<td th:text="${itens.amount}"></td>
+									<td th:text="${itens.productValue}"></td>
+									<td th:text="${itens.saleValue}"></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" id="id" th:field="*{id}" value="" />
+			<button type="submit" class="btn btn-primary btn-lg btn-block" name="action" th:value="save">Salvar</button>
+		</form>
+	</div>
+</section>
+<div th:replace="shared/bottom"></div>

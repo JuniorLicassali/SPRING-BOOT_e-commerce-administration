@@ -18,6 +18,7 @@ public class City implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
+	
 	@ManyToOne
 	private State state;
 	public Long getId() {
@@ -39,5 +40,9 @@ public class City implements Serializable{
 		this.state = state;
 	}
 	
+	@Override
+	public String toString() {
+		return name + "-"+ state.getAcronym();
+	}
 	
 }

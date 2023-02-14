@@ -98,6 +98,7 @@
 	                        <th>Nome</th>
 	                        <th>Cargo</th>
 	                        <th>Salário</th>
+	                        <th>Cidade</th>
 	                        <th></th>
 	                    </tr>
 	                    </thead>
@@ -107,6 +108,7 @@
 	                        <td th:text = "${employee.name}"></td >
 	                        <td th:text = "${employee.jobFunction}"></td>
 	                        <td th:text = "${employee.salary}"></td>
+	                        <td th:text = "${employee.city}"></td>
 	                        
 	                        <td colspan="2">
 	                            <a class="btn btn-warning" th:href="@{/administrativo/funcionarios/editar/{id}(id=${employee.id})}">Editar</a>
