@@ -1,0 +1,31 @@
+<div th:replace="shared/top"></div>
+<section class="layout-content">
+	<nav class="navbar navbar-expand-md bg-light">
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+			</ul>
+			<a class="btn btn-primary btn-md" href="/administrativo/papeis/cadastrar" role="button">
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+				<span>Cadastrar Papéis</span>
+			</a>
+		</div>
+	</nav>
+
+	<div class="container" id="cadastro">
+		<form action="/administrativo/papeis/salvar" th:object="${role}" method="POST">
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="name">Nome do Papel</label>
+					<input type="text" class="form-control" id="name" placeholder="Nome" autofocus="autofocus"
+						th:field="*{name}" value=""/>
+					<div class="invalid-feedback">
+					</div>
+				</div>
+				
+			</div>
+			<input type="hidden" id="id" th:field="*{id}" value="" />
+			<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+		</form>
+	</div>
+</section>
+<div th:replace="shared/bottom"></div>

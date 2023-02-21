@@ -64,5 +64,10 @@ public class CityController {
 		return "redirect:/administrativo/cidades/listar";
 	}
 	
+	@GetMapping("/login")
+	public String log() {
+		return "administrative/login/login";
+	}
+	
 
 }
