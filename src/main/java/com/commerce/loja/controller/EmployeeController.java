@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.commerce.loja.model.Employee;
 import com.commerce.loja.repository.CityRepository;
 import com.commerce.loja.repository.EmployeeRepository;
+import com.commerce.loja.util.PasswordUtil;
 
 @Controller
 public class EmployeeController {
@@ -35,6 +36,8 @@ public class EmployeeController {
 	
 	@PostMapping("/administrativo/funcionarios/salvar")
 	public ModelAndView save(@Validated Employee employee, BindingResult result) {
+		String hashPassword = PasswordUtil.encoder(employee.getPassword());
+		employee.setPassword(hashPassword);
 		if(result.hasErrors()) {
 			return register(employee);
 		}
